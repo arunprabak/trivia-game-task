@@ -16,9 +16,9 @@ const QuestionComponent = ({ ques, changeScore, handleAnswerClick }) => {
   const handleClick = q => {
     const id = correct_answer.replace(' ', '');
     if (correct_answer === q) {
-      handleAnswerClick({id, status:true});
+      handleAnswerClick({id, status:1});
     } else {
-      handleAnswerClick({id, status:false});
+      handleAnswerClick({id, status:0});
     }
   };
 

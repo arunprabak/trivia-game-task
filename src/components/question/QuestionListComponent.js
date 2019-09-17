@@ -1,38 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectGameData } from '../../redux/game/gameSelector';
+import { selectGameData, selectGameScore } from '../../redux/game/gameSelector';
 
 import QuestionComponent from './QuestionComponent';
+import { pushToArray } from '../../utils/util';
+import { getScore } from '../../redux/game/gameAction';
 
-function pushToArray ( arr, obj ) {
-  var existingIds = arr.map((obj) => obj.id);
-
-    if (! existingIds.includes(obj.id)) {
-      arr.push(obj);
-    } else {
-      arr.forEach((element, index) => {
-        if (element.id === obj.id) {
-          arr[index] = obj;
-        };
-      });
-    };
-};
-
-const QuestionListComponent = ({ gameData }) => {
+const QuestionListComponent = ({ gameData, getScore, scoreBoard }) => {
   const score = [];
-  const getScore = () => {
-    console.log('Scoire');
-  };
+
+  const [boardVisible, setBoardVisible] = useState(false);
 
   const handleAnswerClick = updateAns => {
-    if(score.length > 0) {pushToArray(score, updateAns)} else {
-      score.push(updateAns)
+    if (score.length > 0) {
+      pushToArray(score, updateAns);
+    } else {
+      score.push(updateAns);
     }
+  };
+
+  const handleScoreClick = () => {
+    if (score.length) {
+      getScore(score);
+    }
+
+    setBoardVisible(true);
+
+    setTimeout(() => {
+      setBoardVisible(false);
+    }, 5000);
   };
 
   return gameData ? (
     <div className="container">
+      {boardVisible ? (
+        <div className="list is-hoverable">
+          <a className="list-item">{scoreBoard.correct}</a>
+          <a className="list-item">{scoreBoard.wrong}</a>
+        </div>
+      ) : null}
       <div>
         {gameData.results.map((ques, i) => (
           <QuestionComponent
@@ -41,14 +48,28 @@ const QuestionListComponent = ({ gameData }) => {
             ques={ques}
           />
         ))}
-        <button onClick={getScore}>Get Score</button>
+        <button
+          className="button"
+          onClick={handleScoreClick}
+          disabled={score.length}
+        >
+          Get Score
+        </button>
       </div>
     </div>
   ) : null;
 };
 
-const mapStateToProps = createStructuredSelector({
-  gameData: selectGameData
+const mapDispatchToProps = dispatch => ({
+  getScore: score => dispatch(getScore(score))
 });
 
-export default connect(mapStateToProps)(QuestionListComponent);
+const mapStateToProps = createStructuredSelector({
+  gameData: selectGameData,
+  scoreBoard: selectGameScore
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuestionListComponent);

@@ -11,22 +11,16 @@ export const getGameData = () => {
   };
 };
 
-export const changeScore = type => {
+export const getScore = score => {
   return async dispatch => {
-    const score = {
-      correct: 0,
-      wrong: 0
-    };
-    if (type) {
-      score.correct += 1;
-    } else {
-      score.wrong += 1;
-    }
+    const total = score.reduce((prev, next) => prev.status + next.status);
 
-    console.log(score);
     dispatch({
       type: GameTypes.CHANGE_SCORE,
-      payload: score
+      payload: {
+        correct: total,
+        wrong: 10 - total
+      }
     });
   };
 };

@@ -6,3 +6,8 @@ export const selectGameData = createSelector(
   [selectGame],
   game => game.gameData
 );
+
+export const selectGameScore = createSelector(
+  [selectGame],
+  game => game.score
+);
