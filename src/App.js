@@ -5,11 +5,12 @@ import './App.css';
 import HomeComponent from './pages/home/HomeComponent';
 import Loader from './components/ui/loader/LoaderComponent';
 import Notification from './components/ui/notification/NotificationComponent';
-
+import Navbar from './components/navbar/NavbarComponent';
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <Loader />
       <Notification />
       <HomeComponent />
