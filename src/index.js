@@ -4,13 +4,14 @@ import { Provider } from 'react-redux';
 
 import './index.css';
 import './bulma.scss';
+import './customStyle.scss';
 import App from './App';
 
 import { store } from './redux/store';
 
 ReactDOM.render(
-<Provider store={store}>
+  <Provider store={store}>
     <App />
-</Provider>
-, 
-document.getElementById('root'));
+  </Provider>,
+  document.getElementById('root')
+);

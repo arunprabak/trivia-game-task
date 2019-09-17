@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 
 import { getGameData } from '../../redux/game/gameAction';
 import QuestionListComponent from '../../components/question/QuestionListComponent';
+import Navbar from '../../components/navbar/NavbarComponent';
 
 const HomeComponent = ({ getGameData }) => {
   useEffect(() => {
     getGameData();
-  }, [getGameData]);
+  }, []);
 
   return (
     <div>
+      <Navbar resetData={() => getGameData()} />
       <QuestionListComponent />
     </div>
   );

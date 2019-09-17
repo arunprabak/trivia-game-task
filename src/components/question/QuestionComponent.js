@@ -14,15 +14,15 @@ const QuestionComponent = ({ ques, handleAnswerClick }) => {
   const handleClick = q => {
     const id = correct_answer.replace(' ', '');
     if (correct_answer === q) {
-      handleAnswerClick({id, status:1});
+      handleAnswerClick({ id, status: 1 });
     } else {
-      handleAnswerClick({id, status:0});
+      handleAnswerClick({ id, status: 0 });
     }
   };
 
   return (
     <div className="column">
-      <div className="card">
+      <div className="card box-4">
         <header className="card-header">
           <p className="card-header-title is-danger">{question}</p>
         </header>
@@ -50,8 +50,11 @@ const QuestionComponent = ({ ques, handleAnswerClick }) => {
         <div className="card-content">
           <div className="content">
             {answsers.map((q, i) => (
-              <div key={q+i} className="field is-grouped is-grouped-multiline">
-                <div className="control" >
+              <div
+                key={q + i}
+                className="field is-grouped is-grouped-multiline"
+              >
+                <div className="control">
                   <button className="tag button" onClick={() => handleClick(q)}>
                     {q}
                   </button>
@@ -64,6 +67,5 @@ const QuestionComponent = ({ ques, handleAnswerClick }) => {
     </div>
   );
 };
-
 
 export default QuestionComponent;
