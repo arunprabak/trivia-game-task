@@ -36,7 +36,7 @@ const QuestionListComponent = ({ gameData, getScore, openModal }) => {
           />
         ))}
           <button
-            className="button"
+            className="button is-primary"
             onClick={handleScoreClick}
             disabled={score.length}
           >
