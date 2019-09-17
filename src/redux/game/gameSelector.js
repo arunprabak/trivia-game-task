@@ -11,3 +11,8 @@ export const selectGameScore = createSelector(
   [selectGame],
   game => game.score
 );
+
+export const selectModalStatus = createSelector(
+  [selectGame],
+  game => game.modalStatus
+);

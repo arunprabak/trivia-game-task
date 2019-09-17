@@ -5,7 +5,8 @@ const INITIAL_STATE = {
   score: {
     correct: 0,
     wrong: 0
-  }
+  },
+  modalStatus: false
 };
 
 export const gameReducer = (state = INITIAL_STATE, action) => {
@@ -19,6 +20,16 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         score: action.payload
+      };
+    case GameTypes.OPEN_MODAL:
+      return {
+        ...state,
+        modalStatus: true
+      };
+    case GameTypes.CLOSE_MODAL:
+      return {
+        ...state,
+        modalStatus: false
       };
     default:
       return state;

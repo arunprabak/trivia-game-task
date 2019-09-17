@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectGameData, selectGameScore } from '../../redux/game/gameSelector';
 
 import QuestionComponent from './QuestionComponent';
 import { pushToArray } from '../../utils/util';
-import { getScore } from '../../redux/game/gameAction';
+import { getScore, openModal } from '../../redux/game/gameAction';
 
-const QuestionListComponent = ({ gameData, getScore, scoreBoard }) => {
+const QuestionListComponent = ({ gameData, getScore, openModal}) => {
   const score = [];
-  console.log(scoreBoard)
-  const [boardVisible, setBoardVisible] = useState(false);
 
   const handleAnswerClick = updateAns => {
-    if (score.length > 0) {
+    if (score.leScoreboardComponentngth > 0) {
       pushToArray(score, updateAns);
     } else {
       score.push(updateAns);
@@ -23,23 +21,13 @@ const QuestionListComponent = ({ gameData, getScore, scoreBoard }) => {
   const handleScoreClick = () => {
     if (score.length) {
       getScore(score);
+      openModal()
     }
-
-    setBoardVisible(true);
-
-    setTimeout(() => {
-      setBoardVisible(false);
-    }, 5000);
+    
   };
 
   return gameData ? (
     <div className="container">
-      {boardVisible ? (
-        <div className="list is-hoverable">
-          <li className="list-item">{scoreBoard.correct}</li>
-          <li className="list-item">{scoreBoard.wrong}</li>
-        </div>
-      ) : null}
       <div>
         {gameData.results.map((ques, i) => (
           <QuestionComponent
@@ -61,7 +49,8 @@ const QuestionListComponent = ({ gameData, getScore, scoreBoard }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getScore: score => dispatch(getScore(score))
+  getScore: score => dispatch(getScore(score)),
+  openModal:()=> dispatch(openModal())
 });
 
 const mapStateToProps = createStructuredSelector({

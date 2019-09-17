@@ -1,4 +1,0 @@
-export const LoaderTypes = {
-  OPEN_PAGE_LOADING: 'OPEN_PAGE_LOADING',
-  CLOSE_PAGE_LOADING: 'CLOSE_PAGE_LOADING'
-}
