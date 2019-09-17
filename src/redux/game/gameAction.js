@@ -10,3 +10,23 @@ export const getGameData = () => {
         });
     }; 
 }
+
+
+export const changeScore = (type) => {
+    return async dispatch => {
+        const score = {
+            correct:0,
+            wrong:0
+        }
+        if(type)
+ {
+    score.correct+1
+} else
+ {score.wrong+1 } 
+        dispatch({
+            type:GameTypes.CHANGE_SCORE,
+            payload: score
+        }); 
+        
+    }; 
+}

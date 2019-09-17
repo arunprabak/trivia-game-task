@@ -11,31 +11,6 @@
 }
 
 
-.flex-container {
-  display: flex;
-}
-
-.is-fullheight {
-  min-height: 100vh !important;
-  height: 100vh !important;
-}
-
-.is-align-center {
-  align-items: center !important;
-}
-
-.is-justify-center {
-  justify-content: center !important;
-}
-
-.is-justify-between {
-  justify-content: space-between !important;
-}
-
-.is-justify-end {
-  justify-content: flex-end !important;
-}
-
 .text-white {
   color: #ffffff !important;
 }
@@ -87,5 +62,5 @@ li {
 }
 
 .mr-1 {
-    margin-right:1rem;
+    margin-right:1rem !important;
 }
