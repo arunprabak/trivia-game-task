@@ -16,9 +16,9 @@ const QuestionComponent = ({ ques, changeScore, handleAnswerClick }) => {
   const handleClick = q => {
     const id = correct_answer.replace(' ', '');
     if (correct_answer === q) {
-      handleAnswerClick(id, true);
+      handleAnswerClick({id, status:true});
     } else {
-      handleAnswerClick(id, false);
+      handleAnswerClick({id, status:false});
     }
   };
 
@@ -51,9 +51,9 @@ const QuestionComponent = ({ ques, changeScore, handleAnswerClick }) => {
         </div>
         <div className="card-content">
           <div className="content">
-            {answsers.map(q => (
-              <div className="field is-grouped is-grouped-multiline">
-                <div className="control" key={q}>
+            {answsers.map((q, i) => (
+              <div key={q+i} className="field is-grouped is-grouped-multiline">
+                <div className="control" >
                   <button className="tag button" onClick={() => handleClick(q)}>
                     {q}
                   </button>
