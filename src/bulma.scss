@@ -9,7 +9,10 @@ $light-green: rgba(7, 117, 104, 0.25);
 
 // Update Bulma's global variables
 $family-sans-serif: 'Nunito', sans-serif;
-
+$primary: $green;
+$link: $green;
+$widescreen-enabled: false;
+$fullhd-enabled: false;
 
 // Import only what you need from Bulma
 @import '~bulma/sass/utilities/_all.sass';

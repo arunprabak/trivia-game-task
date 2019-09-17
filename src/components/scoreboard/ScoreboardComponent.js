@@ -10,17 +10,17 @@ import { closeModal } from '../../redux/game/gameAction';
 const ScoreboardComponent = ({ scoreBoard, modalStatus, closeModal }) => {
   return (
     <div className={`modal ${modalStatus ? 'is-active' : ''}`}>
-      <div class="modal-background" />
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title has-text-centered">Modal title</p>
+      <div className="modal-background" />
+      <div className="modal-card">
+        <header className="modal-card-head">
+          <p className="modal-card-title has-text-centered">Modal title</p>
           <button
-            class="delete"
+            className="delete"
             aria-label="close"
             onClick={() => closeModal()}
           />
         </header>
-        <section class="modal-card-body">
+        <section className="modal-card-body">
           <div className="tags has-addons">
             <h3 className="tag is-size-4">Correct</h3>
             <h3 className="tag is-size-4 is-primary">{scoreBoard.correct}</h3>

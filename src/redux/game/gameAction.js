@@ -1,13 +1,25 @@
 import { GameTypes } from './gameTypes';
 import { getData } from '../../web/web';
+import { openPageLoading, closePageLoading } from '../loading/loadingAction'
 
 export const getGameData = () => {
   return async dispatch => {
     const data = await getData();
+    dispatch(openPageLoading());
     dispatch({
       type: GameTypes.GET_GAME_DATA,
-      payload: data
+      payload: data.results
     });
+    dispatch(closePageLoading());
+  };
+};
+
+export const resetData = () => {
+  return async dispatch => {
+    dispatch({
+      type: GameTypes.RESET_GAME_DATA
+    });
+    dispatch(getGameData())
   };
 };
 

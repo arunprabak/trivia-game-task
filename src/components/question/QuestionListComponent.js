@@ -9,7 +9,6 @@ import { getScore, openModal } from '../../redux/game/gameAction';
 
 const QuestionListComponent = ({ gameData, getScore, openModal }) => {
   const score = [];
-  console.log('g', gameData);
   const handleAnswerClick = updateAns => {
     if (score.length > 0) {
       pushToArray(score, updateAns);
@@ -25,10 +24,17 @@ const QuestionListComponent = ({ gameData, getScore, openModal }) => {
     }
   };
 
-  return gameData ? (
+  return gameData.length>0 ? (
     <div className="container">
       <div>
         <div className="has-text-centered">
+        {gameData.map((ques, i) => (
+          <QuestionComponent
+            key={i}
+            handleAnswerClick={handleAnswerClick}
+            ques={ques}
+          />
+        ))}
           <button
             className="button"
             onClick={handleScoreClick}
@@ -55,11 +61,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(QuestionListComponent);
-
-// {gameData.results.map((ques, i) => (
-//   <QuestionComponent
-//     key={i}
-//     handleAnswerClick={handleAnswerClick}
-//     ques={ques}
-//   />
-// ))}

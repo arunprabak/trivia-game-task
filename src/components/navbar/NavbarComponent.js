@@ -9,10 +9,12 @@ const Navbar = ({ resetData }) => (
     <div className="navbar-start">
       <h1 className="is-size-3">Trivia Game</h1>
     </div>
-    <div className="navbar-start">
-      <h4 className="is-size-3" onClick={() => resetData()}>
-        Reset
-      </h4>
+    <div className="navbar-end">
+        <div className="navbar-item">
+          <button className="button na" onClick={() => resetData()}>
+            Reset
+          </button>
+        </div>
     </div>
   </nav>
 );
