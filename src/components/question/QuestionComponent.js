@@ -4,6 +4,7 @@ const QuestionComponent = (props) => {
   return (
     <div>
         Question Component
+        Changes
     </div>
   )
 }
