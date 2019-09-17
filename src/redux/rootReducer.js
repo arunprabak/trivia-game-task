@@ -4,5 +4,5 @@ import { loadingReducer } from './loading/loadingReducer';
 
 export const rootReducer = combineReducers({
   game: gameReducer,
-  loading:loadingReducer
+  loading: loadingReducer
 });

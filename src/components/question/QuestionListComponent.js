@@ -24,17 +24,17 @@ const QuestionListComponent = ({ gameData, getScore, openModal }) => {
     }
   };
 
-  return gameData.length>0 ? (
+  return gameData.length > 0 ? (
     <div className="container">
       <div>
         <div className="has-text-centered">
-        {gameData.map((ques, i) => (
-          <QuestionComponent
-            key={i}
-            handleAnswerClick={handleAnswerClick}
-            ques={ques}
-          />
-        ))}
+          {gameData.map((ques, i) => (
+            <QuestionComponent
+              key={i}
+              handleAnswerClick={handleAnswerClick}
+              ques={ques}
+            />
+          ))}
           <button
             className="button is-primary"
             onClick={handleScoreClick}

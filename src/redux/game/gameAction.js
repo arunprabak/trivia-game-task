@@ -1,6 +1,6 @@
 import { GameTypes } from './gameTypes';
 import { getData } from '../../web/web';
-import { openPageLoading, closePageLoading } from '../loading/loadingAction'
+import { openPageLoading, closePageLoading } from '../loading/loadingAction';
 
 export const getGameData = () => {
   return async dispatch => {
@@ -19,7 +19,7 @@ export const resetData = () => {
     dispatch({
       type: GameTypes.RESET_GAME_DATA
     });
-    dispatch(getGameData())
+    dispatch(getGameData());
   };
 };
 

@@ -5,20 +5,20 @@ import {
   selectGameScore,
   selectModalStatus
 } from '../../redux/game/gameSelector';
-import { closeModal } from '../../redux/game/gameAction';
+import { closeModal, resetData } from '../../redux/game/gameAction';
 
-const ScoreboardComponent = ({ scoreBoard, modalStatus, closeModal }) => {
+const ScoreboardComponent = ({
+  scoreBoard,
+  modalStatus,
+  closeModal,
+  resetData
+}) => {
   return (
     <div className={`modal ${modalStatus ? 'is-active' : ''}`}>
       <div className="modal-background" />
       <div className="modal-card">
         <header className="modal-card-head">
-          <p className="modal-card-title has-text-centered">Modal title</p>
-          <button
-            className="delete"
-            aria-label="close"
-            onClick={() => closeModal()}
-          />
+          <p className="modal-card-title has-text-centered">Score Board</p>
         </header>
         <section className="modal-card-body">
           <div className="tags has-addons">
@@ -30,13 +30,22 @@ const ScoreboardComponent = ({ scoreBoard, modalStatus, closeModal }) => {
             <h3 className="tag is-size-4 is-danger">{scoreBoard.wrong}</h3>
           </div>
         </section>
+        <footer className="modal-card-foot">
+          <button className="button is-warning" onClick={() => closeModal()}>
+            Cancel
+          </button>
+          <button className="button is-primary" onClick={() => resetData()}>
+            Play New Game
+          </button>
+        </footer>
       </div>
     </div>
   );
 };
 
 const mapDispatchToProps = dispatch => ({
-  closeModal: score => dispatch(closeModal(score))
+  closeModal: score => dispatch(closeModal(score)),
+  resetData: () => dispatch(resetData())
 });
 
 const mapStateToProps = createStructuredSelector({

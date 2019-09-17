@@ -15,11 +15,11 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         gameData: action.payload
-      };    
+      };
     case GameTypes.CHANGE_SCORE:
       return {
-          state,
-          ...INITIAL_STATE
+        ...state,
+        score: action.payload
       };
     case GameTypes.OPEN_MODAL:
       return {
@@ -34,7 +34,7 @@ export const gameReducer = (state = INITIAL_STATE, action) => {
     case GameTypes.RESET_GAME_DATA:
       return {
         ...state,
-        gameData: action.payload
+        ...INITIAL_STATE
       };
     default:
       return state;
