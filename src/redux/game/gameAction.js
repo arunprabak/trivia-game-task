@@ -13,13 +13,13 @@ export const getGameData = () => {
 
 export const getScore = score => {
   return async dispatch => {
-    const total = score.reduce((prev, next) => prev.status + next.status);
+    const total = score.reduce((prev, next) => ({total:prev.status + next.status}));
 
     dispatch({
       type: GameTypes.CHANGE_SCORE,
       payload: {
-        correct: total,
-        wrong: 10 - total
+        correct: 0,
+        wrong: 10
       }
     });
   };

@@ -9,7 +9,7 @@ import { getScore } from '../../redux/game/gameAction';
 
 const QuestionListComponent = ({ gameData, getScore, scoreBoard }) => {
   const score = [];
-
+  console.log(scoreBoard)
   const [boardVisible, setBoardVisible] = useState(false);
 
   const handleAnswerClick = updateAns => {
@@ -36,8 +36,8 @@ const QuestionListComponent = ({ gameData, getScore, scoreBoard }) => {
     <div className="container">
       {boardVisible ? (
         <div className="list is-hoverable">
-          <a className="list-item">{scoreBoard.correct}</a>
-          <a className="list-item">{scoreBoard.wrong}</a>
+          <li className="list-item">{scoreBoard.correct}</li>
+          <li className="list-item">{scoreBoard.wrong}</li>
         </div>
       ) : null}
       <div>
