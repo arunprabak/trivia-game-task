@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { changeScore } from '../../redux/game/gameAction';
 
-const QuestionComponent = ({ ques }) => {
+const QuestionComponent = ({ ques, changeScore, handleAnswerClick }) => {
   const {
     category,
     type,
@@ -11,11 +13,12 @@ const QuestionComponent = ({ ques }) => {
   } = ques;
   const answsers = [correct_answer, ...incorrect_answers].sort();
 
-  const { selected, setSelected } = useState(false);
-
   const handleClick = q => {
+    const id = correct_answer.replace(' ', '');
     if (correct_answer === q) {
-      console.log(q);
+      handleAnswerClick(id, true);
+    } else {
+      handleAnswerClick(id, false);
     }
   };
 
@@ -25,36 +28,33 @@ const QuestionComponent = ({ ques }) => {
         <header className="card-header">
           <p className="card-header-title is-danger">{question}</p>
         </header>
-        <div class="field is-grouped is-grouped-multiline">
+        <div className="field is-grouped is-grouped-multiline">
           <div className="control">
-            <div class="tags has-addons">
-              <span class="tag">Category</span>
-              <span class="tag is-primary">{category}</span>
+            <div className="tags has-addons">
+              <span className="tag">Category</span>
+              <span className="tag is-primary">{category}</span>
             </div>
           </div>
           <div className="control">
-            <div class="tags has-addons">
-              <span class="tag">Type</span>
-              <span class="tag is-warning">{type}</span>
+            <div className="tags has-addons">
+              <span className="tag">Type</span>
+              <span className="tag is-warning">{type}</span>
             </div>
           </div>
 
           <div className="control">
-            <div class="tags has-addons">
-              <span class="tag">Difficulty</span>
-              <span class="tag is-danger">{difficulty}</span>
+            <div className="tags has-addons">
+              <span className="tag">Difficulty</span>
+              <span className="tag is-danger">{difficulty}</span>
             </div>
           </div>
         </div>
         <div className="card-content">
           <div className="content">
             {answsers.map(q => (
-              <div class="field is-grouped is-grouped-multiline">
+              <div className="field is-grouped is-grouped-multiline">
                 <div className="control" key={q}>
-                  <button
-                    class={`tag button ${selected ? 'is-primary' : ''}`}
-                    onClick={() => handleClick(q)}
-                  >
+                  <button className="tag button" onClick={() => handleClick(q)}>
                     {q}
                   </button>
                 </div>
@@ -67,4 +67,11 @@ const QuestionComponent = ({ ques }) => {
   );
 };
 
-export default QuestionComponent;
+const mapDispatchToProps = dispatch => ({
+  changeScore: bool => dispatch(changeScore(bool))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(QuestionComponent);
