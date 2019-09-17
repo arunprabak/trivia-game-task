@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectGameData, selectGameScore } from '../../redux/game/gameSelector';
+import { selectGameData } from '../../redux/game/gameSelector';
 
 import QuestionComponent from './QuestionComponent';
 import { pushToArray } from '../../utils/util';
 import { getScore, openModal } from '../../redux/game/gameAction';
 
-const QuestionListComponent = ({ gameData, getScore, openModal}) => {
+const QuestionListComponent = ({ gameData, getScore, openModal }) => {
   const score = [];
 
   const handleAnswerClick = updateAns => {
-    if (score.leScoreboardComponentngth > 0) {
+    if (score.length > 0) {
       pushToArray(score, updateAns);
     } else {
       score.push(updateAns);
@@ -21,9 +21,8 @@ const QuestionListComponent = ({ gameData, getScore, openModal}) => {
   const handleScoreClick = () => {
     if (score.length) {
       getScore(score);
-      openModal()
+      openModal();
     }
-    
   };
 
   return gameData ? (
@@ -50,12 +49,11 @@ const QuestionListComponent = ({ gameData, getScore, openModal}) => {
 
 const mapDispatchToProps = dispatch => ({
   getScore: score => dispatch(getScore(score)),
-  openModal:()=> dispatch(openModal())
+  openModal: () => dispatch(openModal())
 });
 
 const mapStateToProps = createStructuredSelector({
-  gameData: selectGameData,
-  scoreBoard: selectGameScore
+  gameData: selectGameData
 });
 
 export default connect(

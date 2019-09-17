@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import { changeScore } from '../../redux/game/gameAction';
+import React from 'react';
 
-const QuestionComponent = ({ ques, changeScore, handleAnswerClick }) => {
+const QuestionComponent = ({ ques, handleAnswerClick }) => {
   const {
     category,
     type,
@@ -67,11 +65,5 @@ const QuestionComponent = ({ ques, changeScore, handleAnswerClick }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  changeScore: bool => dispatch(changeScore(bool))
-});
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(QuestionComponent);
+export default QuestionComponent;

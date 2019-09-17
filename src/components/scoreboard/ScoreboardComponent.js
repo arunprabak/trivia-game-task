@@ -11,10 +11,20 @@ const ScoreboardComponent = ({ scoreBoard, modalStatus, closeModal }) => {
   return (
     <div className={`modal ${modalStatus ? 'is-active' : ''}`}>
       <div className="modal-background" />
-      <div className="modal-content">
-        <div className="list is-primary is-hoverable">
-          <li className="list-item">{scoreBoard.correct}</li>
-          <li className="list-item">{scoreBoard.wrong}</li>
+      <div className="modal-card">
+        <div className="field is-grouped has-text-centered is-grouped-multiline">
+          <div className="control">
+            <div className="tags has-addons">
+              <span className="tag">Correct</span>
+              <span className="tag is-primary">{scoreBoard.correct}</span>
+            </div>
+          </div>
+          <div className="control">
+            <div className="tags has-addons">
+              <span className="tag">Wrong</span>
+              <span className="tag is-danger">{scoreBoard.wrong}</span>
+            </div>
+          </div>
         </div>
       </div>
       <button
